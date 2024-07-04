@@ -16,6 +16,7 @@
 	<meta name="description" content="Виселица это игра, в которой надо разгадать загаданное слово за несколько попыток. Онлайн, бесплатно и без регистрации" />
 	<meta property="og:description" content="Виселица это игра, в которой надо разгадать загаданное слово за несколько попыток. Онлайн, бесплатно и без регистрации" />
 	<meta name="keywords" content="Виселица, бесплатная браузерная игра, разгадать слово, играть без регистрации, онлайн" />
+	<meta name="yandex-verification" content="e867ea6db6f59f44" />
 
 	<!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
