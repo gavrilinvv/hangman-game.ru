@@ -1,0 +1,296 @@
+@use "sass:math";
+
+$darkColor: #131a2f;
+$darkDarkColor: #0d1221;
+$borderColor:#3b508b;
+$green: #3cad40;
+$red: #db2828;
+$orange: #e18f42;
+$gray: #999999;
+$white: #fff;
+$yellow: #ffcc24;
+
+//breakpoints
+$base-viewport-width: 1440px;
+$base-mobile-viewport-width: 360px;
+$base-mobile: 360px;
+$mobile-width: 1000px;
+
+// grid
+$col-size: 64px;
+$col-size-mobile: 44.6px;
+$gap-size: 40px;
+$gap-size-mobile: 12px;
+
+@function px2vw($px, $baseW: $base-viewport-width) {
+	@if $px == 0 or $px == none or $px == auto or $px == unset {
+		@return $px;
+	} @else {
+		@return math.div($px, math.div($baseW, 100)) * 1vw;
+	}
+}
+
+@function cols($quantity, $type: 'wide') {
+	$col-width: $col-size;
+	$gap: $gap-size;
+
+	@if ($type == 'fluid') {
+		$col-width: px2vw($col-size);
+		$gap: px2vw($gap-size);
+	} @else if ($type == 'mobile') {
+		$col-width: px2vw($col-size-mobile, $base-mobile-viewport-width);
+		$gap: px2vw($gap-size-mobile, $base-mobile-viewport-width);
+	}
+
+	@return ($col-width + $gap) * $quantity - $gap;
+}
+
+@mixin mobile {
+	@media screen and (max-width: $mobile-width) and (orientation: portrait) {
+		@content;
+	}
+}
+
+@mixin wide-screen {
+	@media screen and (min-width: $base-viewport-width + 1px) {
+		@content;
+	}
+}
+
+@mixin fluid($prop, $desktop-size, $mobile-size: $desktop-size, $important: false) {
+	$important-rule: '';
+	@if ($important) {
+		$important-rule: ' !important';
+	}
+
+	#{$prop}: px2vw($desktop-size)#{$important-rule};
+
+	@include wide-screen {
+		#{$prop}: $desktop-size#{$important-rule};
+	}
+
+	@include mobile {
+		#{$prop}: px2vw($mobile-size, $base-mobile-viewport-width)#{$important-rule};
+	}
+}
+
+@font-face {
+	font-family: 'Chalk';
+	src: url('/src/fonts/Chalkcyrillicfreehand.ttf');
+}
+
+* {
+	font-family: "Chalk", sans-serif;
+	@include fluid('font-size', 32px, 32px);
+}
+body {
+	padding: 0;
+	margin: 0;
+	background-image: url('/src/img/bg.webp');
+	background-size: contain;
+	background-size: auto;
+    height: 100vh;
+	color: $white;
+}
+
+a {
+	display: block;
+	text-decoration: none;
+}
+
+#app {
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+	width: 100vw;
+	margin: 0 auto;
+	height: 100vh;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	justify-content: center;
+}
+
+._inner-padding {
+	@include fluid('width', 680px);
+
+	@include mobile {
+		width: 90%;
+		@include fluid('padding-left', 16px);
+		@include fluid('padding-right', 16px);
+	}
+}
+._dflex {
+	display: flex;
+}
+
+._text-center {
+	text-align: center;
+}
+.h1 {
+	@include fluid('font-size', 96px, 72px);
+}
+
+.h2 {
+	@include fluid('font-size', 64px, 48px);
+}
+
+.button {
+	color: #ffffffe0;
+	cursor: pointer;
+	@include fluid('font-size', 54px, 36px);
+	@include fluid('margin-bottom', 16px);
+	text-align: center;
+
+	&:hover {
+		color: #fff;
+	}
+
+	&-back {
+		position: absolute;
+		@include fluid('top', 5px);
+		left: 0;
+
+		@include mobile {
+			@include fluid('left', 5px);
+		}
+	}
+}
+
+#game-screen {
+	display: none;
+}
+#levels-screen {
+	display: none;
+}
+#settings-screen {
+	display: none;
+}
+#rules-screen {
+	display: none;
+}
+#not-support-screen {
+	display: none;
+}
+#other-games-screen {
+	display: none;
+}
+
+.letter {
+	&-card {
+		@include fluid('font-size', 48px, 32px);
+		display: inline-block;
+		cursor: pointer;
+		text-transform: capitalize;
+		text-align: center;
+		user-select: none;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&._blocked {
+			pointer-events: none;
+			opacity: 0.3;
+		}
+	}
+}
+
+canvas#hangman {
+	display: block;
+	margin: 0 auto;
+}
+
+.hint {
+	@include fluid('font-size', 32px, 24px);
+	@include fluid('margin-bottom', 32px);
+	text-align: center;
+}
+
+.word {
+	display: flex;
+	justify-content: center;
+	@include fluid('margin-bottom', 32px);
+
+	&__letter {
+		border-bottom: 4px solid $white;
+		@include fluid('padding-bottom', 6px);
+		@include fluid('width', 54px, 24px);
+		@include fluid('height', 54px, 24px);
+		display: inline-block;
+		@include fluid('margin-right', 4px);
+		@include fluid('font-size', 56px, 28px);
+		text-align: center;
+		text-transform: capitalize;
+		user-select: none;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.banner {
+	// background-color: rgba(255,255,255,0.5);
+
+	&-right {
+		@include fluid('width', 240px);
+		@include fluid('height', 400px);
+		@include mobile {
+			display: none;
+		}
+	}
+
+	&-left {
+		@include fluid('width', 240px);
+		@include fluid('height', 400px);
+		@include mobile {
+			display: none;
+		}
+	}
+
+	&-bottom {
+		@include fluid('width', 320px);
+		@include fluid('height', 50px);
+		position: absolute;
+		@include fluid('bottom', 18px);
+	}
+}
+
+.keys {
+	display: grid;
+	@include fluid('grid-gap', 16px, 4px);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.winning {
+	visibility: hidden;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+
+	&__title {
+		@include fluid('font-size', 56px, 36px);
+	}
+}
+
+.losing {
+	visibility: hidden;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 100%);
+
+	&__title {
+		@include fluid('font-size', 56px, 36px);
+	}
+}
