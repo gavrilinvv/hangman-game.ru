@@ -12,10 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	const btnPlay = document.querySelectorAll(".js-play");
 	const btnRules = document.querySelector(".js-rules");
 	const btnOtherGames = document.querySelector(".js-other-games");
-	const btnBack = document.querySelectorAll(".js-back");
+	const btnBack = document.querySelector(".js-back");
 	let word;
 	let attempt = 2;
 	let letterCards = []; // буквы для клавиатуры
+	let activeScreen = 'start-screen';
 
 	initBtns();
 
@@ -127,10 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				initKeyboard();
 			})
 		})
-		btnBack.forEach(btn => {
-			btn.addEventListener('click', () => {
-				showScreen('start-screen');
-			})
+		btnBack.addEventListener('click', () => {
+			showScreen('start-screen');
 		})
 	}
 
@@ -138,7 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		[...document.getElementsByClassName('screen')].forEach(screen => {
 			screen.style.display = 'none'
 		})
+		activeScreen = screen;
 		document.getElementById(screen).style.display = 'block'
+
+		if (screen === 'start-screen') {
+			btnBack.style.display = 'none'
+		} else {
+			btnBack.style.display = 'block'
+		}
 	}
 
 	function setHint() {

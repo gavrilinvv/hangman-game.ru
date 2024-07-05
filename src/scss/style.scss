@@ -157,11 +157,13 @@ a {
 
 	&-back {
 		position: absolute;
-		@include fluid('top', 5px);
+		display: none;
+		@include fluid('top', 8px);
+		z-index: 1;
 		left: 0;
 
 		@include mobile {
-			@include fluid('left', 5px);
+			@include fluid('left', 8px);
 		}
 	}
 }
