@@ -1,5 +1,4 @@
 <div id="game-screen" class="screen">
-	<div class="button button-back js-back">Назад</div>
 	<canvas id="hangman" width="240" height="220"></canvas>
 	<div class="word"></div>
 	<div class="hint"></div>

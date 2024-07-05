@@ -1,5 +1,4 @@
 <div id="other-games-screen" class="screen">
-	<div class="button button-back js-back">Назад</div>
 	<div class="h2 _text-center">Другие игры</div>
 	<br>
 	<a href="https://alchemy-game.ru/" target="_blank" class="button">Алхимия</a>

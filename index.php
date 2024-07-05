@@ -48,6 +48,7 @@
 	<div id="app">
 		<div class="banner banner-right"></div>
 		<div class="container _inner-padding">
+			<div class="button button-back js-back">Назад</div>
 			<?include('screens/start.php');?>
 			<?include('screens/game.php');?>
 			<?include('screens/rules.php');?>
