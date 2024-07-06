@@ -163,7 +163,7 @@ a {
 		left: 0;
 
 		@include mobile {
-			@include fluid('left', 8px);
+			@include fluid('left', 12px);
 		}
 	}
 }
