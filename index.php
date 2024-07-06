@@ -43,10 +43,16 @@
 	</script>
 	<noscript><div><img src="https://mc.yandex.ru/watch/97750844" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 	<!-- /Yandex.Metrika counter -->
+
+	<!-- Yandex.RTB -->
+	<script>window.yaContextCb=window.yaContextCb||[]</script>
+	<script src="https://yandex.ru/ads/system/context.js" async></script>
 </head>
 <body>
 	<div id="app">
-		<div class="banner banner-right"></div>
+		<div class="banner banner-right">
+			<div id="yandex_rtb_R-A-9952474-1"></div>
+		</div>
 		<div class="button button-back js-back">Назад</div>
 		<div class="container _inner-padding">
 			<?include('screens/start.php');?>
@@ -54,9 +60,47 @@
 			<?include('screens/rules.php');?>
 			<?include('screens/other-games.php');?>
 		</div>
-		<div class="banner banner-left"></div>
-		<div class="banner banner-bottom"></div>
+		<div class="banner banner-left">
+			<div id="yandex_rtb_R-A-9952474-2"></div>
+		</div>
+		<div class="banner banner-bottom">
+			<div id="yandex_rtb_R-A-9952474-3"></div>
+		</div>
 	</div>
 	<script src="/dest/script.js?<?=date('Hdmy')?>"></script>
+
+
+	<script>
+		function renderAds() {
+			// left
+			window.yaContextCb.push(()=>{
+				Ya.Context.AdvManager.render({
+					"blockId": "R-A-9952474-2",
+					"renderTo": "yandex_rtb_R-A-9952474-2"
+				})
+			})
+			// right
+			window.yaContextCb.push(()=>{
+				Ya.Context.AdvManager.render({
+					"blockId": "R-A-9952474-1",
+					"renderTo": "yandex_rtb_R-A-9952474-1"
+				})
+			})
+			// bottom
+			window.yaContextCb.push(()=>{
+				Ya.Context.AdvManager.render({
+					"blockId": "R-A-9952474-3",
+					"renderTo": "yandex_rtb_R-A-9952474-3"
+				})
+			})
+
+			setTimeout(function(){
+				renderAds();
+			}, 60000);
+		}
+		renderAds();
+	</script>
+
+
 </body>
 </html>
