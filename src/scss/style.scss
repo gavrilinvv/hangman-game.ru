@@ -264,7 +264,7 @@ canvas#hangman {
 		@include fluid('width', 320px);
 		@include fluid('height', 50px);
 		position: absolute;
-		@include fluid('bottom', 18px);
+		@include fluid('bottom', 18px, 12px);
 	}
 }
 
