@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					keysBlock.appendChild(letterElement);
 				})
 				word = getWord();
-				setHint();
+				setTheme();
 				setEmptyWord(word);
 				initKeyboard();
 			})
@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 		activeScreen = screen;
 		document.getElementById(screen).style.display = 'block'
+		console.log(screen);
 
 		if (screen === 'start-screen') {
 			btnBack.style.display = 'none'
@@ -147,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
-	function setHint() {
-		hintBlock.innerHTML = word.desc;
+	function setTheme() {
+		hintBlock.innerHTML = 'Тема: ' +word.theme;
 	}
 
 	function setEmptyWord(word) {

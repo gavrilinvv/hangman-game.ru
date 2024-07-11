@@ -50,22 +50,22 @@
 </head>
 <body>
 	<div id="app">
-		<div class="banner banner-right">
-			<div id="yandex_rtb_R-A-9952474-1"></div>
+		<div class="main">
+			<div class="banner banner-left" id="yandex_rtb_R-A-9952474-2"></div>
+
+			<div class="button button-back js-back">Назад</div>
+			<div class="content">
+				<?include('screens/start.php');?>
+				<?include('screens/game.php');?>
+				<?include('screens/rules.php');?>
+				<?include('screens/other-games.php');?>
+			</div>
+
+			<div class="banner banner-right" id="yandex_rtb_R-A-9952474-1"></div>
 		</div>
-		<div class="button button-back js-back">Назад</div>
-		<div class="container _inner-padding">
-			<?include('screens/start.php');?>
-			<?include('screens/game.php');?>
-			<?include('screens/rules.php');?>
-			<?include('screens/other-games.php');?>
-		</div>
-		<div class="banner banner-left">
-			<div id="yandex_rtb_R-A-9952474-2"></div>
-		</div>
-		<div class="banner banner-bottom">
-			<div id="yandex_rtb_R-A-9952474-3"></div>
-		</div>
+
+		<div class="banner banner-bottom" id="yandex_rtb_R-A-9952474-3"></div>
+
 	</div>
 	<script src="/dest/script.js?<?=date('Hdmy')?>"></script>
 
