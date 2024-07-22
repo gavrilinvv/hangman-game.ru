@@ -92,23 +92,12 @@ body {
     // height: 100vh;
 	color: $white;
 	overflow: hidden;
+	position: relative;
 }
 
 a {
 	display: block;
 	text-decoration: none;
-}
-
-#app {
-	padding: 0;
-	margin: 0;
-	display: flex;
-    flex-direction: column;
-    // height: 95vh;
-
-	// @include mobile {
-	// 	height: 100vh;
-	// }
 }
 
 .main {
@@ -298,6 +287,11 @@ canvas#hangman {
 		@include fluid('width', 320px, 320px, true);
 		@include fluid('height', 50px, 50px, true);
 		margin: 0 auto;
+
+		position: absolute;
+		@include fluid('bottom', -40px, -40px, true);
+		left: 50%;
+		transform: translate(-50%, 0);
 	}
 }
 

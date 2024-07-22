@@ -49,24 +49,22 @@
 	<script src="https://yandex.ru/ads/system/context.js" async></script>
 </head>
 <body>
-	<div id="app">
-		<div class="main">
-			<div class="banner banner-left" id="yandex_rtb_R-A-9952474-2"></div>
+	<div class="main">
+		<div class="banner banner-left" id="yandex_rtb_R-A-9952474-2"></div>
 
-			<div class="button button-back js-back">Назад</div>
-			<div class="content">
-				<?include('screens/start.php');?>
-				<?include('screens/game.php');?>
-				<?include('screens/rules.php');?>
-				<?include('screens/other-games.php');?>
-			</div>
-
-			<div class="banner banner-right" id="yandex_rtb_R-A-9952474-1"></div>
+		<div class="button button-back js-back">Назад</div>
+		<div class="content">
+			<?include('screens/start.php');?>
+			<?include('screens/game.php');?>
+			<?include('screens/rules.php');?>
+			<?include('screens/other-games.php');?>
 		</div>
 
-		<div class="banner banner-bottom" id="yandex_rtb_R-A-9952474-3"></div>
-
+		<div class="banner banner-right" id="yandex_rtb_R-A-9952474-1"></div>
 	</div>
+
+	<div class="banner banner-bottom" id="yandex_rtb_R-A-9952474-3"></div>
+
 	<script src="/dest/script.js?<?=date('Hdmy')?>"></script>
 
 
