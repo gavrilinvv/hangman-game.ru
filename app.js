@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	function resetGame() {
 		keysBlock.innerHTML = '';
 		wordField.innerHTML = '';
-		keysBlock.style.visibility = 'visible';
-		hintBlock.style.visibility = 'visible';
-		winningBlock.style.visibility = 'hidden';
-		losingBlock.style.visibility = 'hidden';
+		keysBlock.style.display = 'grid';
+		hintBlock.style.display = 'block';
+		winningBlock.style.display = 'none';
+		losingBlock.style.display = 'none';
 		attempt = 2;
 
 		hangman.reset();
@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			// проигрыш
 			if (attempt === 9) {
-				keysBlock.style.visibility = 'hidden';
-				hintBlock.style.visibility = 'hidden';
-				losingBlock.style.visibility = 'visible';
+				keysBlock.style.display = 'none';
+				hintBlock.style.display = 'none';
+				losingBlock.style.display = 'block';
 			}
 			return;
 		}
@@ -98,11 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		// выигрыш
-		console.log(document.querySelectorAll('.word__letter[data-state="empty"]'), document.querySelectorAll('.word__letter[data-state="empty"]').length);
 		if (!document.querySelectorAll('.word__letter[data-state="empty"]').length) {
-			keysBlock.style.visibility = 'hidden';
-			hintBlock.style.visibility = 'hidden';
-			winningBlock.style.visibility = 'visible';
+			keysBlock.style.display = 'none';
+			hintBlock.style.display = 'none';
+			winningBlock.style.display = 'block';
 		}
 	}
 
@@ -189,11 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				case 1:
 					this.ctx.beginPath();
 					this.ctx.moveTo(80, 200);
-					this.ctx.lineTo(80, 0);
+					this.ctx.lineTo(80, 10);
 					this.ctx.stroke();
 					break;
 				case 2:
-					this.ctx.lineTo(160, 0);
+					this.ctx.lineTo(160, 10);
 					this.ctx.stroke();
 					break;
 				case 3:

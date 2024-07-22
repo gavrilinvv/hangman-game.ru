@@ -107,7 +107,7 @@ a {
     height: 95vh;
 
 	@include mobile {
-		height: 85vh;
+		height: auto;
 	}
 }
 
@@ -118,6 +118,7 @@ a {
 	height: 100vh;
 
 	@include mobile {
+		display: block;
 		height: 90vh;
 	}
 }
@@ -138,6 +139,7 @@ a {
 	display: flex;
     flex-direction: column;
     align-items: center;
+	justify-content: flex-start;
 
 	@include mobile {
 		max-width: 100%;
@@ -147,13 +149,12 @@ a {
 }
 
 .screen {
+	align-content: center;
+    height: 90vh;
+
 	.container {
-		position: absolute;
-		// @include fluid('height', 400px);
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -60%);
-		// width: 100%;
+		position: relative;
+		height: 70vh;
 	}
 }
 
@@ -274,82 +275,53 @@ canvas#hangman {
 	}
 }
 
-
-
 .banner {
 	// background-color: rgba(255,255,255,0.5);
 
 	&-right {
 		@include fluid('width', 240px, 240px, true);
 		@include fluid('height', 400px, 400px, true);
-		// background-color: #ac7f7f
+
+		@include mobile {
+			display: none;
+		}
 	}
 	&-left {
 		@include fluid('width', 240px, 240px, true);
 		@include fluid('height', 400px, 400px, true);
-		// background-color: #ac7f7f
+
+		@include mobile {
+			display: none;
+		}
 	}
 	&-bottom {
 		@include fluid('width', 320px, 320px, true);
 		@include fluid('height', 50px, 50px, true);
-		// background-color: #ac7f7f;
 		margin: 0 auto;
 	}
 }
-
-// .banner {
-// 	background-color: rgba(255,255,255,0.5);
-
-// 	&-right {
-// 		@include fluid('width', 240px);
-// 		@include fluid('height', 400px);
-// 		@include mobile {
-// 			display: none;
-// 		}
-// 	}
-
-// 	&-left {
-// 		@include fluid('width', 240px);
-// 		@include fluid('height', 400px);
-// 		@include mobile {
-// 			display: none;
-// 		}
-// 	}
-
-// 	&-bottom {
-// 		@include fluid('width', 320px);
-// 		@include fluid('height', 50px);
-// 		position: absolute;
-// 		@include fluid('bottom', 18px, 12px);
-// 	}
-// }
 
 .keys {
 	display: grid;
 	@include fluid('grid-gap', 16px, 4px);
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	transition: .4s;
 }
 
 .winning {
-	visibility: hidden;
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 100%);
+	display: none;
 
 	&__title {
+		@include fluid('margin-top', 64px, 32px);
 		@include fluid('font-size', 56px, 36px);
 	}
 }
 
 .losing {
-	visibility: hidden;
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 100%);
+	display: none;
 
 	&__title {
+		@include fluid('margin-top', 64px, 32px);
 		@include fluid('font-size', 56px, 36px);
 	}
 }
