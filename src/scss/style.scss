@@ -107,7 +107,7 @@ a {
     height: 95vh;
 
 	@include mobile {
-		height: auto;
+		height: 100vh;
 	}
 }
 
