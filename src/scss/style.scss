@@ -51,6 +51,12 @@ $gap-size-mobile: 12px;
 	}
 }
 
+@mixin not-mobile {
+	@media screen and (min-width: $mobile-width + 1px) {
+		@content;
+	}
+}
+
 @mixin wide-screen {
 	@media screen and (min-width: $base-viewport-width + 1px) {
 		@content;
@@ -287,11 +293,18 @@ canvas#hangman {
 		@include fluid('width', 320px, 320px, true);
 		@include fluid('height', 50px, 50px, true);
 		margin: 0 auto;
-
+		display: none;
 		position: absolute;
 		@include fluid('bottom', -40px, -40px, true);
 		left: 50%;
 		transform: translate(-50%, 0);
+
+		@include wide-screen {
+			display: block;
+		}
+		@include mobile {
+			display: block;
+		}
 	}
 }
 
