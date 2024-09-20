@@ -350,6 +350,7 @@ canvas#hangman {
 
 	&__body {
 		display: flex;
+		align-items: center;
 		position: relative;
 		@include fluid('margin-bottom', 18px, 14px);
 		@include fluid('font-size', 16px, 14px);
@@ -358,8 +359,8 @@ canvas#hangman {
 		&::before {
 			content: '';
 			display: inline-block;
-			@include fluid('width', 20px, 16px);
-			@include fluid('height', 20px, 16px);
+			@include fluid('width', 20px, 20px);
+			@include fluid('height', 20px, 20px);
 			@include fluid('border-radius', 4px);
 			@include fluid('margin-right', 15px);
 			background-color: rgba(0,0,0,0.3);
@@ -388,5 +389,9 @@ canvas#hangman {
 			@include fluid('width', 24px, 24px);
 			@include fluid('height', 24px, 24px);
 		}
+	}
+
+	&:last-of-type {
+		@include fluid('margin-bottom', 24px, 24px);
 	}
 }
