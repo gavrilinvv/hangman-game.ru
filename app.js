@@ -7,17 +7,22 @@ document.addEventListener('DOMContentLoaded', () => {
 	const wordField = document.querySelector('.word');
 	const keysBlock = document.querySelector('.keys');
 	const hintBlock = document.querySelector('.hint');
+	const themesBlock = document.querySelector('.themes-block');
 	const winningBlock = document.querySelector('.winning');
 	const losingBlock = document.querySelector('.losing');
 	const btnPlay = document.querySelectorAll(".js-play");
+	const btnThemes = document.querySelector(".js-themes");
 	const btnRules = document.querySelector(".js-rules");
 	const btnOtherGames = document.querySelector(".js-other-games");
 	const btnBack = document.querySelector(".js-back");
+	const themes = getThemesList();
+	let selectedThemes = [];
 	let word;
 	let attempt = 2;
 	let letterCards = []; // буквы для клавиатуры
 	let activeScreen = 'start-screen';
 
+	createThemesCheckboxes();
 	initBtns();
 
 	function resetGame() {
@@ -59,9 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		return div
 	}
-	function createEmptyLetterElement(index) {
+	function createEmptyLetterElement(index, options = {isSpace: false}) {
 		let div = document.createElement('div');
 		div.classList.add('word__letter');
+		if (options.isSpace) div.classList.add('word__letter_space');
 		div.setAttribute('data-state', 'empty');
 		div.setAttribute('index', index);
 		return div
@@ -98,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		// выигрыш
-		if (!document.querySelectorAll('.word__letter[data-state="empty"]').length) {
+		if (!document.querySelectorAll('.word__letter:not(.word__letter_space)[data-state="empty"]').length) {
 			keysBlock.style.display = 'none';
 			hintBlock.style.display = 'none';
 			winningBlock.style.display = 'block';
@@ -112,8 +118,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		btnRules.addEventListener('click', () => {
 			showScreen('rules-screen');
 		})
+		btnThemes.addEventListener('click', () => {
+			showScreen('themes-screen');
+		})
 		btnPlay.forEach(btn => {
 			btn.addEventListener('click', () => {
+				if (!selectedThemes.length) {
+					alert('Выберите хотя бы одну тему');
+					return;
+				}
 				resetGame();
 				showScreen('game-screen');
 
@@ -130,6 +143,34 @@ document.addEventListener('DOMContentLoaded', () => {
 		btnBack.addEventListener('click', () => {
 			showScreen('start-screen');
 		})
+
+		document.querySelectorAll('.checkbox').forEach(el => {
+			el.addEventListener('click', () => {
+				let checkbox = el.querySelector('input');
+				checkbox.checked = !checkbox.checked;
+				el.children[0].classList[checkbox.checked ? 'add' : 'remove']('checkbox__checked');
+
+				if (checkbox.value === 'Все') {
+					if (checkbox.checked) {
+						selectedThemes = themes
+						document.querySelectorAll('.checkbox').forEach(el => {
+							el.children[0].classList.add('checkbox__checked');
+						})
+					} else {
+						selectedThemes = [];
+						document.querySelectorAll('.checkbox').forEach(el => {
+							el.children[0].classList.remove('checkbox__checked');
+						})
+					}
+				} else {
+					if (checkbox.checked) {
+						selectedThemes.push(checkbox.value)
+					} else {
+						_removeElementFromArrayByIndex(selectedThemes, checkbox.value)
+					}
+				}
+			})
+		})
 	}
 
 	function showScreen(screen) {
@@ -138,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 		activeScreen = screen;
 		document.getElementById(screen).style.display = 'block'
-		console.log(screen);
 
 		if (screen === 'start-screen') {
 			btnBack.style.display = 'none'
@@ -153,18 +193,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function setEmptyWord(word) {
 		word.name.split('').forEach((letter, i) => {
-			let emptyLetterElement = createEmptyLetterElement(i);
+			let emptyLetterElement;
+
+			// если буква
+			if (letter !== ' ') {
+				emptyLetterElement = createEmptyLetterElement(i);
+			} else { // если пробел
+				emptyLetterElement = createEmptyLetterElement(i, {isSpace: true});
+			}
 			wordField.appendChild(emptyLetterElement);
 		})
 	}
 
 	function getWord() {
-		return _getRandomFromArray(WORDS);
+		return _getRandomFromArray(WORDS.filter(word => selectedThemes.includes(word.theme)));
 	}
 
 	// получение случайного элемента из массива
 	function _getRandomFromArray(items) {
 		return items[Math.floor(Math.random()*items.length)];
+	}
+
+	// удаление элемента из массива
+	function _removeElementFromArrayByIndex(array, el) {
+		const index = array.indexOf(el);
+		if (index > -1) { array.splice(index, 1);
+		}
+	}
+
+	// получение списка доступных тем
+	function getThemesList() {
+		let themes = [];
+		WORDS.forEach(word => {
+			if (!themes.includes(word.theme)) {
+				themes.push(word.theme);
+			}
+		})
+		return themes;
+	}
+
+	function createThemesCheckboxes() {
+		themes.forEach(theme => {
+			let div = document.createElement('div');
+			div.classList.add('checkbox');
+
+			let body = document.createElement('div');
+			body.classList.add('checkbox__body');
+
+			let name = document.createElement('div');
+			name.innerHTML = theme;
+
+			let checkbox = document.createElement('input')
+			checkbox.type = 'checkbox';
+			checkbox.name = 'theme';
+			checkbox.value = theme;
+
+			body.appendChild(checkbox);
+			body.appendChild(name);
+			div.appendChild(body);
+
+			themesBlock.appendChild(div);
+		})
+
+
 	}
 
 

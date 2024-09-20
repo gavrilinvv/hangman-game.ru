@@ -203,6 +203,9 @@ a {
 #rules-screen {
 	display: none;
 }
+#themes-screen {
+	display: none;
+}
 #not-support-screen {
 	display: none;
 }
@@ -263,6 +266,10 @@ canvas#hangman {
 		text-align: center;
 		text-transform: capitalize;
 		user-select: none;
+
+		&_space {
+			border-bottom: none;
+		}
 
 		&:last-child {
 			margin-right: 0;
@@ -331,4 +338,58 @@ canvas#hangman {
 		@include fluid('margin-top', 64px, 32px);
 		@include fluid('font-size', 56px, 36px);
 	}
+}
+
+.checkbox {
+	cursor: pointer;
+	user-select: none;
+
+	& input {
+		display: none;
+	}
+
+	&__body {
+		display: flex;
+		position: relative;
+		@include fluid('margin-bottom', 18px);
+
+		&::before {
+			content: '';
+			display: inline-block;
+			@include fluid('width', 20px, 20px);
+			@include fluid('height', 20px, 20px);
+			@include fluid('border-radius', 4px);
+			@include fluid('margin-right', 15px);
+			background-color: rgba(0,0,0,0.3);
+			border: 2px solid #fff;
+		}
+
+		&::after {
+			content: '';
+			transform: scale(0);
+			opacity: 0;
+			transition: transform .1s,opacity .1s ease;
+		}
+
+		&.checkbox__checked::after {
+			content: '';
+			transform: scale(1);
+			opacity: 1;
+			background-size: cover;
+			background-position: 50%;
+			background-image: url('/src/img/icon-check-white.svg');
+			box-sizing: border-box;
+			position: absolute;
+			left: 0;
+			top: 0;
+			@include fluid('border-radius', 4px);
+			@include fluid('width', 24px, 24px);
+			@include fluid('height', 24px, 24px);
+		}
+	}
+}
+
+// #platform,
+#part1, #part2, #part3, #head, #body, #handLeft, #handRight, #legLeft, #legRight{
+	visibility:hidden;
 }

@@ -55,6 +55,7 @@
 		<div class="button button-back js-back">Назад</div>
 		<div class="content">
 			<?include('screens/start.php');?>
+			<?include('screens/themes.php');?>
 			<?include('screens/game.php');?>
 			<?include('screens/rules.php');?>
 			<?include('screens/other-games.php');?>
@@ -66,7 +67,6 @@
 	<div class="banner banner-bottom" id="yandex_rtb_R-A-9952474-3"></div>
 
 	<script src="/dest/script.js?<?=date('Hdmy')?>"></script>
-
 
 	<script>
 		function renderAds() {
