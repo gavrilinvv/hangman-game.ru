@@ -10,6 +10,7 @@
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="button js-play">Начать</div>
 	</div>
 </div>
