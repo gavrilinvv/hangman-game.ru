@@ -278,7 +278,7 @@ canvas#hangman {
 }
 
 .banner {
-	background-color: rgba(255,255,255,0.5);
+	// background-color: rgba(255,255,255,0.5);
 
 	&-right {
 		@include fluid('width', 240px, 240px, true);
