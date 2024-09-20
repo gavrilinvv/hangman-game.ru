@@ -278,7 +278,7 @@ canvas#hangman {
 }
 
 .banner {
-	// background-color: rgba(255,255,255,0.5);
+	background-color: rgba(255,255,255,0.5);
 
 	&-right {
 		@include fluid('width', 240px, 240px, true);
@@ -351,7 +351,8 @@ canvas#hangman {
 	&__body {
 		display: flex;
 		position: relative;
-		@include fluid('margin-bottom', 18px);
+		@include fluid('margin-bottom', 18px, 14px);
+		@include fluid('font-size', 16px, 14px);
 
 		&::before {
 			content: '';
@@ -387,9 +388,4 @@ canvas#hangman {
 			@include fluid('height', 24px, 24px);
 		}
 	}
-}
-
-// #platform,
-#part1, #part2, #part3, #head, #body, #handLeft, #handRight, #legLeft, #legRight{
-	visibility:hidden;
 }
