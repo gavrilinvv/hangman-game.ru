@@ -340,6 +340,162 @@ canvas#hangman {
 	}
 }
 
+#hangman {
+	position: relative;
+	@include fluid('height', 285px);
+	@include fluid('width', 200px);
+	@include fluid('margin-bottom', 16px);
+	$thickness: 5px;
+
+	& div.active {
+		transition: 1s;
+	}
+
+	& div {
+		background-color: #fff;
+		position: absolute;
+		transition: .1s;
+	}
+	& #platform {
+		@include fluid('height', $thickness);
+		width: 100%;
+		bottom: 0;
+		@include fluid('left', 0);
+	}
+	& #part1 {
+		@include fluid('height', 0px);
+		@include fluid('width', $thickness);
+		bottom: 0;
+		@include fluid('left', 0);
+
+		&.active {
+			@include fluid('height', 280px, 180px);
+		}
+	}
+	& #part2 {
+		@include fluid('height', $thickness);
+		@include fluid('width', 0px);
+		@include fluid('bottom', 280px, 180px);
+		@include fluid('left', 0);
+
+		&.active {
+			@include fluid('width', 100px);
+		}
+	}
+
+	& #part3 {
+		@include fluid('height', 0);
+		@include fluid('width', $thickness);
+		@include fluid('bottom', 255px, 155px);
+		@include fluid('left', 100px, 100px);
+
+		&.active {
+			@include fluid('height', 30px);
+		}
+	}
+
+	& #head {
+		@include fluid('height', 0);
+		@include fluid('width', 0);
+		border-radius: 50%;
+		@include fluid('left', 78px);
+
+		&.active {
+			@include fluid('height', 40px, 20px);
+			@include fluid('width', 40px, 20px);
+		}
+	}
+
+	& #body {
+		@include fluid('height', 0);
+		@include fluid('width', $thickness*2, $thickness);
+		@include fluid('bottom', 62px, 123px);
+		@include fluid('left', 93px, 85px);
+
+		&.active {
+			@include fluid('height', 100px, 60px);
+		}
+	}
+
+	& #handLeft {
+		@include fluid('height', 0);
+		@include fluid('width', $thickness*2, $thickness);
+		@include fluid('bottom', 108px, 145px);
+		@include fluid('left', 62px, 64px);
+		transform: rotate(32deg);
+		transform-origin: bottom;
+
+		&.active {
+			@include fluid('height', 60px, 40px);
+		}
+	}
+	& #handRight {
+		@include fluid('height', 0);
+		@include fluid('width', $thickness*2, $thickness);
+		@include fluid('bottom', 108px, 145px);
+		@include fluid('left', 130px, 110px);
+		transform: rotate(322deg);
+		transform-origin: bottom;
+
+		&.active {
+			@include fluid('height', 60px, 40px);
+		}
+	}
+
+	& #legLeft {
+		@include fluid('height', 0);
+		@include fluid('width', $thickness*2, $thickness);
+		@include fluid('bottom', 0, 65px);
+		@include fluid('left', 82px, 77px);
+		transform: rotate(8deg);
+		transform-origin: bottom;
+
+		&.active {
+			@include fluid('height', 80px, 60px);
+		}
+	}
+	& #legRight {
+		@include fluid('height', 0);
+		@include fluid('width', $thickness*2, $thickness);
+		@include fluid('bottom', 0px, 65px);
+		@include fluid('left', 104px, 93px);
+		transform: rotate(352deg);
+		transform-origin: bottom;
+
+		&.active {
+			@include fluid('height', 80px, 60px);
+		}
+	}
+
+	#corpse {
+		@include fluid('height', 200px);
+		@include fluid('width', 200px);
+		@include fluid('bottom', 60px, -40px);
+		@include fluid('left', 5px , 12px);
+        background: transparent;
+        transform-origin: top center;
+
+		&.active {
+			animation: rocking 5s infinite linear;
+		}
+	}
+}
+
+@keyframes rocking {
+	0% {
+		transform: rotateZ(0deg);
+	}
+	25% {
+		transform: rotateZ(3deg);
+	}
+	75% {
+		transform: rotateZ(-3deg);
+	}
+	100% {
+		transform: rotateZ(0);
+	}
+}
+
 .checkbox {
 	cursor: pointer;
 	user-select: none;

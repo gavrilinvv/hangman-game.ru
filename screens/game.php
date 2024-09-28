@@ -1,6 +1,20 @@
 <div id="game-screen" class="screen">
 	<div class="container">
-		<canvas id="hangman" width="240" height="220"></canvas>
+		<!-- <canvas id="hangman" width="240" height="220"></canvas> -->
+		<div id="hangman">
+			<div id="platform"></div>
+			<div id="part1"></div>
+			<div id="part2"></div>
+			<div id="part3"></div>
+			<div id="corpse">
+				<div id="head"></div>
+				<div id="body"></div>
+				<div id="handLeft"></div>
+				<div id="handRight"></div>
+				<div id="legLeft"></div>
+				<div id="legRight"></div>
+			</div>
+		</div>
 		<div class="word"></div>
 		<div class="hint"></div>
 		<div class="keys"></div>

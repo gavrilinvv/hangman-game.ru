@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const themes = getThemesList();
 	let selectedThemes = [];
 	let word;
-	let attempt = 2;
+	let attempt = 1;
 	let letterCards = []; // буквы для клавиатуры
 	let activeScreen = 'start-screen';
 
@@ -32,12 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		hintBlock.style.display = 'block';
 		winningBlock.style.display = 'none';
 		losingBlock.style.display = 'none';
-		attempt = 2;
+		attempt = 1;
 
 		hangman.reset();
-		hangman.init();
 		hangman.drawStep(1);
-		hangman.drawStep(2);
 	}
 
 	function initKeyboard() {
@@ -83,10 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			hangman.drawStep(attempt);
 
 			// проигрыш
-			if (attempt === 9) {
+			if (attempt === 10) {
 				keysBlock.style.display = 'none';
 				hintBlock.style.display = 'none';
 				losingBlock.style.display = 'block';
+				let corpse = document.querySelector('#corpse');
+				corpse.classList.add('active');
 			}
 			return;
 		}
@@ -261,76 +261,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	class Hangman {
 		constructor() {
-			this.canvas = document.getElementById("hangman");
-		}
-		init() {
-			this.ctx = this.canvas.getContext("2d");
-			this.ctx.lineWidth = 5;
-			this.ctx.lineHeight = 10;
-			this.ctx.strokeStyle = '#fff';
+			this.hangman = document.getElementById("hangman");
+			this.platform = document.querySelector("#hangman #platform");
+			this.part1 = document.querySelector("#hangman #part1");
+			this.part2 = document.querySelector("#hangman #part2");
+			this.part3 = document.querySelector("#hangman #part3");
+			this.head = document.querySelector("#hangman #head");
+			this.body = document.querySelector("#hangman #body");
+			this.handLeft = document.querySelector("#hangman #handLeft");
+			this.handRight = document.querySelector("#hangman #handRight");
+			this.legLeft = document.querySelector("#hangman #legLeft");
+			this.legRight = document.querySelector("#hangman #legRight");
 		}
 
 		reset() {
-			this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			this.hangman.querySelectorAll('div').forEach(item => {
+				item.classList.remove('active');
+			})
 		}
 
 		drawStep(step) {
 			switch(step) {
 				case 1:
-					this.ctx.beginPath();
-					this.ctx.moveTo(80, 200);
-					this.ctx.lineTo(80, 10);
-					this.ctx.stroke();
 					break;
 				case 2:
-					this.ctx.lineTo(160, 10);
-					this.ctx.stroke();
+					part1.classList.add('active');
 					break;
 				case 3:
-					this.ctx.lineTo(160, 40);
-					this.ctx.stroke();
+					part2.classList.add('active');
 					break;
-				case 4:// head
-					this.ctx.beginPath();
-					this.ctx.arc(160, 55, 15, 0, 2 * Math.PI);
-					this.ctx.stroke();
+				case 4://
+					part3.classList.add('active');
 					break;
-				case 5:// body
-					this.ctx.beginPath();
-					this.ctx.moveTo(160, 70);
-					this.ctx.lineTo(160, 120);
-					this.ctx.stroke();
+				case 5:// head
+					head.classList.add('active');
 					break;
-				case 6:// right hand
-					this.ctx.beginPath();
-					this.ctx.moveTo(160, 70);
-					this.ctx.lineTo(180, 110);
-					this.ctx.stroke();
+				case 6:// body
+					body.classList.add('active');
 					break;
 				case 7:// left hand
-					this.ctx.beginPath();
-					this.ctx.moveTo(160, 70);
-					this.ctx.lineTo(140, 110);
-					this.ctx.stroke();
+					handLeft.classList.add('active');
 					break;
-				case 8:// right leg
-					this.ctx.beginPath();
-					this.ctx.moveTo(160, 120);
-					this.ctx.lineTo(180, 180);
-					this.ctx.stroke();
+				case 8:// right hand
+					handRight.classList.add('active');
 					break;
 				case 9:// left leg
-					this.ctx.beginPath();
-					this.ctx.moveTo(160, 120);
-					this.ctx.lineTo(140, 180);
-					this.ctx.stroke();
+					legLeft.classList.add('active');
+					break;
+				case 10:// right leg
+					legRight.classList.add('active');
 					break;
 			}
 		}
 	}
 
 	let hangman = new Hangman();
-	hangman.init();
 	hangman.drawStep(1);
-	hangman.drawStep(2);
 })
