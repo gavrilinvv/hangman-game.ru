@@ -318,7 +318,7 @@ canvas#hangman {
 .keys {
 	display: grid;
 	@include fluid('grid-gap', 16px, 4px);
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	transition: .4s;
 }
 
