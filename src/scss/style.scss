@@ -193,6 +193,11 @@ a {
 
 #game-screen {
 	display: none;
+
+	& .container {
+		display: block;
+		width: 90%;
+	}
 }
 #levels-screen {
 	display: none;
@@ -237,11 +242,6 @@ a {
 			opacity: 0.3;
 		}
 	}
-}
-
-canvas#hangman {
-	display: block;
-	margin: 0 auto;
 }
 
 .hint {
@@ -318,12 +318,13 @@ canvas#hangman {
 .keys {
 	display: grid;
 	@include fluid('grid-gap', 16px, 4px);
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	transition: .4s;
 }
 
 .winning {
 	display: none;
+	text-align: center;
 
 	&__title {
 		@include fluid('margin-top', 64px, 32px);
@@ -333,6 +334,7 @@ canvas#hangman {
 
 .losing {
 	display: none;
+	text-align: center;
 
 	&__title {
 		@include fluid('margin-top', 64px, 32px);
@@ -342,9 +344,12 @@ canvas#hangman {
 
 #hangman {
 	position: relative;
-	@include fluid('height', 285px);
+	display: block;
+	@include fluid('height', 285px, 200px);
 	@include fluid('width', 200px);
 	@include fluid('margin-bottom', 16px);
+	margin-left: auto;
+	margin-right: auto;
 	$thickness: 5px;
 
 	& div.active {
