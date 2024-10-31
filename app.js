@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		winningBlock.style.display = 'none';
 		losingBlock.style.display = 'none';
 		attempt = 1;
+		document.removeEventListener('keydown', initEnterAgainBtn)
 
 		hangman.reset();
 		hangman.drawStep(1);
@@ -50,6 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				})
 			}
 		})
+	}
+	function initEnterAgainBtn(e) {
+		if (e.key === 'Enter') {
+			btnPlay[0].click();
+		}
 	}
 
 	function createLetterElement(letter) {
@@ -87,6 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				losingBlock.style.display = 'block';
 				let corpse = document.querySelector('#corpse');
 				corpse.classList.add('active');
+
+				document.addEventListener('keydown', initEnterAgainBtn)
 			}
 			return;
 		}
@@ -108,6 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			keysBlock.style.display = 'none';
 			hintBlock.style.display = 'none';
 			winningBlock.style.display = 'block';
+
+			document.addEventListener('keydown', initEnterAgainBtn)
 		}
 	}
 
