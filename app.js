@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (!letterArr.includes(selectLetter)) {
 			attempt++;
 			hangman.drawStep(attempt);
+			this.classList.add('_incorrect')
 
 			// проигрыш
 			if (attempt === 10) {
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 			return;
 		}
+		this.classList.add('_correct')
 
 		// перебираем загаданное слово по буквам
 		for (let i = 0; i < letterArr.length; i++) {
