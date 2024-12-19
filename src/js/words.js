@@ -81,6 +81,7 @@ export const WORDS = [
 	{name: 'гамбургер', theme: 'Еда'},
 	{name: 'фрикаделька', theme: 'Еда'},
 
+	{name: 'кения', theme: 'Страна'},
 	{name: 'чехия', theme: 'Страна'},
 	{name: 'дания', theme: 'Страна'},
 	{name: 'алжир', theme: 'Страна'},
@@ -98,6 +99,7 @@ export const WORDS = [
 	{name: 'бразилия', theme: 'Страна'},
 	{name: 'исландия', theme: 'Страна'},
 	{name: 'ирландия', theme: 'Страна'},
+	{name: 'иордания', theme: 'Страна'},
 	{name: 'монголия', theme: 'Страна'},
 	{name: 'малайзия', theme: 'Страна'},
 	{name: 'пакистан', theme: 'Страна'},
