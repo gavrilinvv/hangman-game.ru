@@ -266,6 +266,14 @@ a {
 	text-align: center;
 }
 
+.fire {
+	background-image: url('/src/img/fire.png');
+	background-size: contain;
+	display: block;
+	@include fluid('width', 56px, 36px);
+	@include fluid('height', 56px, 36px);
+}
+
 .word {
 	display: flex;
 	justify-content: center;
@@ -345,8 +353,15 @@ a {
 	text-align: center;
 
 	&__title {
+		align-items: baseline;
+		display: flex;
+		justify-content: center;
+		@include fluid('margin-bottom', 16px);
 		@include fluid('margin-top', 64px, 32px);
-		@include fluid('font-size', 56px, 36px);
+
+		& span {
+			@include fluid('font-size', 56px, 36px);
+		}
 	}
 }
 

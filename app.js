@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const btnRules = document.querySelector(".js-rules");
 	const btnOtherGames = document.querySelector(".js-other-games");
 	const btnBack = document.querySelector(".js-back");
+	const fireBlocks = document.querySelectorAll('.fire');
 	const themes = getThemesList();
 	let selectedThemes = [];
 	let word;
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		hintBlock.style.display = 'block';
 		winningBlock.style.display = 'none';
 		losingBlock.style.display = 'none';
+		toggleFire('none');
 		attempt = 1;
 		document.removeEventListener('keydown', initEnterAgainBtn)
 
@@ -119,8 +121,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			hintBlock.style.display = 'none';
 			winningBlock.style.display = 'block';
 
+			// без ошибок
+			if (attempt === 1) {
+				toggleFire('block');
+			}
+
 			document.addEventListener('keydown', initEnterAgainBtn)
 		}
+	}
+
+	function toggleFire(display) {
+		[...fireBlocks].map(item => item.style.display = display);
 	}
 
 	function initBtns() {

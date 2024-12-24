@@ -19,7 +19,11 @@
 		<div class="hint"></div>
 		<div class="keys"></div>
 		<div class="winning">
-			<div class="winning__title">Вы выиграли!</div>
+			<div class="winning__title">
+				<span class="fire"></span>
+				<span>Вы выиграли!</span>
+				<span class="fire"></span>
+			</div>
 			<div class="button js-play">Еще раз?</div>
 		</div>
 		<div class="losing">
